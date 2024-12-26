@@ -5,7 +5,7 @@ const Server = () => {
   const { MovieId, setWatchInfo, watchInfo, MovieInfo, episode, season } =
     useWatchContext();
 
-  const defaultVideoServers = ["upcloud", "megacloud"];
+  const defaultVideoServers = ["upcloud"];
 
   const MovieVideoPlayers = {
     "vidsrc.dev": `https://vidsrc.dev/embed/movie/${MovieId}`,
