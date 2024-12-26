@@ -5,20 +5,15 @@ const Server = () => {
   const { MovieId, setWatchInfo, watchInfo, MovieInfo, episode, season } =
     useWatchContext();
 
-  const defaultVideoServers = ["upcloud"];
+  const defaultVideoServers = ["autoembed"];
 
   const MovieVideoPlayers = {
-    "vidsrc.dev": `https://vidsrc.dev/embed/movie/${MovieId}`,
-    "vidsrc.cc": `https://vidsrc.cc/v2/embed/movie/${MovieId}`,
-    vidsrc: `https://vidsrc.in/embed/movie/${MovieId}`,
     vidsrcpro: `https://vidsrc.pro/embed/movie/${MovieId}`,
     autoembed: `https://player.autoembed.cc/embed/movie/${MovieId}`,
+    smashystream: `https://embed.smashystream.com/playere.php?tmdb=${MovieId}?playerList=D|SM`,     
   };
 
   const TVVideoPlayers = {
-    "vidsrc.dev": `https://vidsrc.dev/embed/tv/${MovieId}/${season}/${episode}`,
-    "vidsrc.cc": `https://vidsrc.cc/v2/embed/tv/${MovieId}/${season}/${episode}`,
-    vidsrc: `https://vidsrc.in/embed/tv/${MovieId}/${season}/${episode}`,
     vidsrcpro: `https://vidsrc.pro/embed/tv/${MovieId}/${season}/${episode}`,
     autoembed: `https://player.autoembed.cc/embed/tv/${MovieId}/${season}/${episode}`,
   };
