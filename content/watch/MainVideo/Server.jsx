@@ -5,7 +5,7 @@ const Server = () => {
   const { MovieId, setWatchInfo, watchInfo, MovieInfo, episode, season } =
     useWatchContext();
 
-  const defaultVideoServers = ["autoembed"];
+  const defaultVideoServers = [" "];
 
   const MovieVideoPlayers = {
     vidsrcpro: `https://vidsrc.pro/embed/movie/${MovieId}`,
