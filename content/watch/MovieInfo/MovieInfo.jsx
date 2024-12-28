@@ -123,7 +123,7 @@ const MovieInfo = ({ info }) => {
                   href={link.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 text-sm font-['poppins'] text-white bg-[#77dd77] rounded-lg hover:bg-[#60c060] transition-colors"
+                  className="px-6 py-3 text-sm font-bold font-['poppins'] text-white bg-gradient-to-r from-[#77dd77] via-[#66bb6a] to-[#60c060] rounded-lg shadow-xl hover:shadow-2xl hover:opacity-90 transition-all"
                 >
                   {link.quality}
                 </a>
