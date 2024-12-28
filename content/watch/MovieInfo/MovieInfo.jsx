@@ -8,12 +8,12 @@ const MovieInfo = ({ info }) => {
   const [downloadLinks, setDownloadLinks] = useState([]);
 
   useEffect(() => {
-    // Fetch JSON data and filter links based on the movie's ID
+    // Fetch JSON data and filter links based on the movie's TMDB ID
     const fetchDownloadLinks = async () => {
       try {
         const response = await fetch("https://siamstv.vercel.app/tv/movies.json");
         const data = await response.json();
-        const movieData = data.find((movie) => movie.id === info.id);
+        const movieData = data.find((movie) => movie.id === info.id.toString()); // Match TMDB ID with JSON ID
         setDownloadLinks(movieData?.download_links || []);
       } catch (error) {
         console.error("Error fetching download links:", error);
