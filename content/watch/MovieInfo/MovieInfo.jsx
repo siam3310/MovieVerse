@@ -6,34 +6,34 @@ import Link from "next/link";
 
 const MovieInfo = ({ info }) => {
   const [downloadLinks, setDownloadLinks] = useState([]);
-  const [isLoading, setIsLoading] = useState(true); // Loading state
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchDownloadLinks = async () => {
       try {
-        // Fetch JSON file from the provided URL
+        // Fetch the movie data from the JSON file
         const response = await fetch("https://siamstv.vercel.app/tv/movies.json");
         if (!response.ok) {
-          throw new Error("Failed to fetch download links.");
+          throw new Error("Failed to fetch download links");
         }
+
         const data = await response.json();
 
-        // Match the current movie's ID with the JSON ID
+        // Find the matching movie by ID
         const matchedMovie = data.find(
-          (movie) => movie.id === info.id.toString() // Ensure both are strings for comparison
+          (movie) => movie.id === info.id.toString() // Ensure ID is matching as a string
         );
 
-        // Update state with download links
         if (matchedMovie) {
-          setDownloadLinks(matchedMovie.download_links || []);
+          setDownloadLinks(matchedMovie.download_links || []); // Set the download links if found
         } else {
-          setDownloadLinks([]); // No links if no match found
+          setDownloadLinks([]); // If no match is found, show no links
         }
       } catch (error) {
-        console.error("Error fetching download links:", error);
-        setDownloadLinks([]); // Default to empty links on error
+        console.error("Error fetching or processing download links:", error);
+        setDownloadLinks([]); // Error fallback
       } finally {
-        setIsLoading(false); // Remove loading state
+        setIsLoading(false); // End loading state
       }
     };
 
@@ -47,7 +47,7 @@ const MovieInfo = ({ info }) => {
       {/* Movie Poster */}
       <Image
         src={`https://image.tmdb.org/t/p/w500${info?.poster_path}`}
-        alt="movie poster"
+        alt="Movie Poster"
         width={215}
         height={300}
         className="rounded-2xl object-cover h-80 w-[16rem] max-[840px]:h-[14rem] max-[380px]:h-[9rem]"
@@ -129,7 +129,7 @@ const MovieInfo = ({ info }) => {
                 </a>
               ))
             ) : (
-              <p className="text-sm text-[#dadada]">No download links available.</p>
+              <p className="text-sm text-[#dadada]">No download links available for this movie.</p>
             )}
           </div>
         </div>
