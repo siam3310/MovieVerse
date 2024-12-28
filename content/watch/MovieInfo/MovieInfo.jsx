@@ -12,11 +12,19 @@ const MovieInfo = ({ info }) => {
     const fetchDownloadLinks = async () => {
       try {
         const response = await fetch("https://siamstv.vercel.app/tv/movies.json");
+        if (!response.ok) {
+          throw new Error("Failed to fetch download links");
+        }
         const data = await response.json();
-        const movieData = data.find((movie) => movie.id === info.id.toString()); // Match TMDB ID with JSON ID
-        setDownloadLinks(movieData?.download_links || []);
+        const matchedMovie = data.find((movie) => movie.id === info.id.toString()); // Match TMDB ID with JSON ID
+        if (matchedMovie) {
+          setDownloadLinks(matchedMovie.download_links || []);
+        } else {
+          setDownloadLinks([]); // No match found
+        }
       } catch (error) {
         console.error("Error fetching download links:", error);
+        setDownloadLinks([]);
       }
     };
 
@@ -178,7 +186,7 @@ const MovieInfo = ({ info }) => {
             </div>
           </div>
         </div>
-        
+
         {/* Download Links */}
         <div className="mt-4">
           <h2 className="text-lg font-['poppins'] font-medium text-[#77dd77]">
