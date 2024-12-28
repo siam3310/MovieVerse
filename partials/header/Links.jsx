@@ -6,13 +6,10 @@ import styles from "./header.module.css"
 const Links = ({ isMobile }) => {
   const pathname = usePathname()
 
-
-
+  // Updated links array without "News" and "Collection"
   const links = [
     "Home",
     "Catalog",
-    "News",
-    "Collection",
     "Trending"
   ]
 
@@ -25,7 +22,6 @@ const Links = ({ isMobile }) => {
             key={link}
             className={`${(pathname === "/" ? "Home" : pathname).includes(link) ? "text-white bg-[#242233] border-2 border-[#313e5038]" : ""}  w-full h-full text-center py-[6px] rounded-md hover:bg-[#242233] border-2 border-transparent hover:border-[#313e5038] relative ${styles.animate_ltr}`}
             style={{ animationDelay: `${index * 0.13}s` }}
-
           >
             {link}
           </Link>
